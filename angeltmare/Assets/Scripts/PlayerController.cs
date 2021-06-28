@@ -5,7 +5,9 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool diceInHand = false; 
+    public static bool diceInHand = false;
+
+    public static int diceResult;
 
     private List<int> list = new List<int>(){1,2,3,4,5,6,7,8,9,10};
     public static int diceNumber;
@@ -18,7 +20,8 @@ public class PlayerController : MonoBehaviour
     private void ThrowDice(){
         if(diceInHand==true && Input.GetMouseButton(0)){
             diceInHand = false;
-            Debug.Log("LANZA EL DADO: " + RollTheDice());
+            RollTheDice();
+            Debug.Log("LANZA EL DADO: " + diceResult);
         }else{
             //No puede lanzar el dado
         }
@@ -26,10 +29,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private int RollTheDice(){
-        int result = Random.Range(list[0],list.Last());
-        list.RemoveAt(result -1);
+        diceResult = Random.Range(list[0],list.Last());
+        list.RemoveAt(diceResult -1);
 
         Debug.Log(System.String.Join("; ", list));
-        return result;
+        return diceResult;
     }
 }

@@ -9,6 +9,7 @@ public class Animations : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Sin(Time.time * speed) * amount);        
+        float shake = Mathf.Sin(Time.time * speed) * amount;
+        transform.position = new Vector3(transform.position.x, transform.position.y , transform.position.z + shake);        
     }
 }
